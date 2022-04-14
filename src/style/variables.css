@@ -1,0 +1,10 @@
+:root {
+	--background: #EAEAEA;
+	--foreground: black;
+	
+	--font-family: 'Inconsolata', monospace;
+	--font-size-small: 12px;
+	--font-size-medium: 16px;
+	--font-size-big: 28px;
+	--font-size-mega: 48px;
+}
