@@ -1,6 +1,6 @@
 <template>
 <div class="country" v-if="!error">
-	<div class="country__title">{{ title }}</div>
+	<div class="country__titles">{{ title }}</div>
 
 	<h1 class="country__name" v-if="showDetails">{{ activeCountry.name.common}}</h1>
 
@@ -9,17 +9,17 @@
 	<button @click="toggleDetails" class="country__showDetails"> {{ button.text }} </button>
 	
 	<div  v-if="showDetails">
-		<h2 class="country__title">capital:</h2>
-		<span>{{ activeCountry.capital[0] }}</span>
+		<h2 class="country__titles">capital:</h2>
+		<span class="country__answer">{{ activeCountry.capital[0] }}</span>
 
-		<h2 class="country__title">language:</h2>
-		<li v-for="language in activeCountry.languages"> <ul>{{ language }}</ul> </li>
+		<h2 class="country__titles">language:</h2>
+		<li v-for="language in activeCountry.languages" class="country__answer"> <ul>{{ language }}</ul> </li>
 		
-		<h2 class="country__title">population:</h2>
-		<span> {{ activeCountry.population }} </span>
+		<h2 class="country__titles">population:</h2>
+		<span class="country__answer"> {{ activeCountry.population }} </span>
 		
-		<h2 class="country__title" >continent:</h2>
-		<span>{{ activeCountry.continents[0] }} </span>
+		<h2 class="country__titles" >continent:</h2>
+		<span class="country__answer">{{ activeCountry.continents[0] }} </span>
 	</div>
 
 	<button @click="fetchData" class="country__newData">	
@@ -71,9 +71,6 @@ export default {
 			} catch (error) {
 				this.error = error.message;
 			}
-
-			// this.countries = results;
-			// this.setActiveCountry(); 
 		},
 
 		async handleResponse(response) {
@@ -111,7 +108,7 @@ export default {
 
 <style>
 
-.country__title {
+.country__titles {
 	color: grey;
 	font-size: var(--font-size-medium);
 }
@@ -121,7 +118,7 @@ h2 {
 	margin: 10px;
 }
 
-span {
+.country__answer {
 	font-size: var(--font-size-big);
 	margin: 10px;
 }
@@ -157,7 +154,17 @@ li {
 	font-size: var(--font-size-mega);
 	color: red;
 	padding: 100px;	
+}
 
+/* 800px tablet and smaller -- mobile */
+@media screen and (max-width: 800px) { 
+	.country {
+		margin: 2%;
+	}
+
+	.country__answer {
+	font-size: var(--font-size-medium);
+	}
 }
 
 </style>
